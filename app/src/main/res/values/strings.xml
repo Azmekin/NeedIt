@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">NeedIt</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_navigation">Navigation_Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Create</string>
+    <string name="AccEnter">Please, log in to your account</string>
+    <string name="LoginButton">Login</string>
+    <string name="RegButton">Register</string>
+    <string name="DashTop">Can you help this people?</string>
+    <string name="Submit">Submit</string>
+    <string name="Enter_an_adress">Enter an adress</string>
+    <string name="Enter_a_name">Enter a title</string>
+    <string name="Enter_a_discr">Enter a discription</string>
+    <string name="More">More</string>
 </resources>
