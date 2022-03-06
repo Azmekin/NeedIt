@@ -47,4 +47,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'      //авторизация
     implementation 'com.google.firebase:firebase-firestore-ktx' //база данных
+    implementation 'com.google.firebase:firebase-storage-ktx'   //хранилище файлов
+
 }

@@ -1,26 +1,27 @@
 package com.example.needit.firebase.firestore
-import com.example.needit.firebase.models.User
+
+import com.example.needit.firebase.models.Post
 import com.example.needit.firebase.utils.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.toObject
 
-class UserFirestore{
+class PostFirestore {
     private val firestore = FirebaseFirestore.getInstance()
 
-    fun set(user: User){
-        firestore.collection(Constants.USERS).document(user.id).set(user, SetOptions.merge())
+    fun set(post: Post){
+        firestore.collection(Constants.POSTS).document(post.id).set(post, SetOptions.merge())
             .addOnFailureListener{e -> throw e }
     }
 
-    fun delete(userId: String){
-        firestore.collection(Constants.USERS).document(userId).delete()
+    fun delete(postId: String){
+        firestore.collection(Constants.POSTS).document(postId).delete()
             .addOnFailureListener{ e -> throw e }
     }
 
-    //TODO getOne не работает, не знаю почему
-    fun getOne(userId: String): User{
-        val user = firestore.collection(Constants.USERS).document(userId).get()
+    //TODO getOne не работает
+    fun getOne(postId: String): Post {
+        val post = firestore.collection(Constants.POSTS).document(postId).get()
             .addOnSuccessListener { document ->
                 if (document == null){
                     throw NoSuchElementException()
@@ -28,6 +29,6 @@ class UserFirestore{
             }
             .addOnFailureListener{ e -> throw e }
 
-        return user.result.toObject<User>()!!
+        return post.result.toObject<Post>()!!
     }
 }
