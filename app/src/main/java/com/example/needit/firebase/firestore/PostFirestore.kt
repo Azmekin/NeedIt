@@ -4,7 +4,7 @@ import com.example.needit.firebase.models.Post
 import com.example.needit.firebase.utils.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.tasks.await
 
 class PostFirestore {
     private val firestore = FirebaseFirestore.getInstance()
@@ -19,16 +19,18 @@ class PostFirestore {
             .addOnFailureListener{ e -> throw e }
     }
 
-    //TODO getOne не работает
-    fun getOne(postId: String): Post {
-        val post = firestore.collection(Constants.POSTS).document(postId).get()
-            .addOnSuccessListener { document ->
-                if (document == null){
-                    throw NoSuchElementException()
+    //TODO getAll не работает, сообщение в exception - this feature is not compiled into this build
+    //решение взято отсюда https://medium.com/firebase-tips-tricks/how-to-read-data-from-cloud-firestore-using-get-bf03b6ee4953
+    suspend fun getAll(): List<Post> {
+        try{
+            val posts = firestore.collection(Constants.POSTS).get().await().documents
+                .mapNotNull { snapShot ->
+                    snapShot.toObject(Post::class.java)
                 }
-            }
-            .addOnFailureListener{ e -> throw e }
-
-        return post.result.toObject<Post>()!!
+            return posts
+        }
+        catch(e: Exception){
+            throw e
+        }
     }
 }
