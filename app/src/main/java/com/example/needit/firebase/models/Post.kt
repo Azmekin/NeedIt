@@ -10,9 +10,9 @@ class Post(
     val phone: String,
     val post_type: PostType,
     val object_type: ObjectType,
-    val user_reference: String,
     val language: String,
-    val photo_reference: String? = null
+    val photo_reference: String? = null,
+    val creation_date: Date
 )
 {
     enum class PostType{
