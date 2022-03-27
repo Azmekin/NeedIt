@@ -1,12 +1,13 @@
-package com.example.needit.activityes.ui.login
+package com.example.needit.activityes.ui.login.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
 import com.example.needit.R
-import com.example.needit.activityes.data.LoginRepository
-import com.example.needit.activityes.data.Result
+import com.example.needit.activityes.ui.login.data.LoginRepository
+import com.example.needit.activityes.ui.login.data.Result
+
 
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {

@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.needit.databinding.FragmentDashboardBinding
-
+import kotlinx.coroutines.withContext
+//Stegancev
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
@@ -18,7 +21,7 @@ class DashboardFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
+    private val adapter=DashAdapter()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,9 +37,29 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        init()
+        init()
+        init()
+        init()
+        init()
+        init()
+        init()
+        init()
+        init()
+        init()
+        init()
+        init()
         return root
     }
+      private fun init()= with(binding) {
 
+              RecycledVievDash.layoutManager= LinearLayoutManager(activity)
+                RecycledVievDash.adapter=adapter
+                val personRequest=PersonRequest(0,"Yasha","Lava","I need new boots 43 size","Need","Pushkin street Kolotushkin House")
+                adapter.addReq(personRequest)
+
+        }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

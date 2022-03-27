@@ -1,4 +1,4 @@
-package com.example.needit.activityes.ui.login
+package com.example.needit.activityes.ui.login.ui.login
 
 /**
  * Data validation state of the login form.

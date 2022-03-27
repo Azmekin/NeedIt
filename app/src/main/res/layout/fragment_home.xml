@@ -7,28 +7,31 @@
     tools:context=".activityes.ui.home.HomeFragment">
 
     <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="736dp"
+        android:layout_width="414dp"
+        android:layout_height="730dp"
+        android:background="#0EA6D0"
         android:orientation="vertical"
+        android:paddingTop="20px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/AccEnter"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="match_parent"
+            android:layout_height="97dp"
+            android:paddingTop="5px"
+            android:src="@drawable/name" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerViewHome"
             android:layout_width="match_parent"
             android:layout_height="394dp"
-            android:visibility="visible"
+            android:background="#AC25C3"
+            android:visibility="gone"
             tools:listitem="@layout/activity_login" />
 
         <TextView
@@ -40,7 +43,8 @@
             android:layout_marginEnd="8dp"
             android:text="Its home"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

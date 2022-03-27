@@ -1,4 +1,4 @@
-package com.example.needit.activityes.data
+package com.example.needit.activityes.ui.login.data
 
 /**
  * A generic class that holds a value with its loading status.

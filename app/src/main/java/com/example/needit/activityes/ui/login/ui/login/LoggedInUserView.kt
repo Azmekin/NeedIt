@@ -1,4 +1,4 @@
-package com.example.needit.activityes.ui.login
+package com.example.needit.activityes.ui.login.ui.login
 
 /**
  * User details post authentication that is exposed to the UI

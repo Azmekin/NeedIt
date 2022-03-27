@@ -1,9 +1,9 @@
-package com.example.needit.activityes.ui.login
+package com.example.needit.activityes.ui.login.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.needit.activityes.data.LoginDataSource
-import com.example.needit.activityes.data.LoginRepository
+import com.example.needit.activityes.ui.login.data.LoginDataSource
+import com.example.needit.activityes.ui.login.data.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

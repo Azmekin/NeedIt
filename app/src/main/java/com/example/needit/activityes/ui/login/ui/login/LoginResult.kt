@@ -1,4 +1,4 @@
-package com.example.needit.activityes.ui.login
+package com.example.needit.activityes.ui.login.ui.login
 
 /**
  * Authentication result : success (user details) or error message.

@@ -1,4 +1,4 @@
-package com.example.needit.activityes.data.model
+package com.example.needit.activityes.ui.login.data.model
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.needit.activityes.ui.dashboard.DashAdapter
+import com.example.needit.activityes.ui.dashboard.PersonRequest
 import com.example.needit.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -18,7 +21,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
+    private val adapter= HomeAdapter()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,9 +37,18 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+        init()
         return root
     }
+    private fun init()= with(binding) {
 
+        RecyclerViewHome.layoutManager= LinearLayoutManager(activity)
+        RecyclerViewHome.adapter=adapter
+        val ldata= logindata("asha","Lava")
+        adapter.addLog(ldata)
+
+
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

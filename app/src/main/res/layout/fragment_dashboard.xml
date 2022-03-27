@@ -26,35 +26,40 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
-        android:text="@string/More"
+        android:layout_width="412dp"
+        android:layout_height="47dp"
+        android:backgroundTint="#0EA6D0"
+        android:text="That's all"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="409dp"
-        android:layout_height="627dp"
+        android:layout_width="407dp"
+        android:layout_height="684dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
+        android:background="#0EA6D0"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView"
+        <SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/DashTop"
-            android:textSize="20sp" />
+            android:background="#71C7DF"
+            android:inputType="textShortMessage">
+
+        </SearchView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycledVievDash"
             android:layout_width="match_parent"
-            android:layout_height="654dp"
+            android:layout_height="632dp"
             android:clickable="true"
             android:visibility="visible"
             tools:itemCount="30"

@@ -1,6 +1,6 @@
-package com.example.needit.activityes.data
+package com.example.needit.activityes.ui.login.data
 
-import com.example.needit.activityes.data.model.LoggedInUser
+import com.example.needit.activityes.ui.login.data.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and
