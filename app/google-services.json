@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "616512963878",
+    "project_id": "needit-d5458",
+    "storage_bucket": "needit-d5458.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616512963878:android:77990f2f50bf9860616de7",
+        "android_client_info": {
+          "package_name": "com.example.needit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616512963878-nccs5llrdekuphj9ppelb7nm23lennsu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.needit",
+            "certificate_hash": "29283c9cdaef3f327e3a28f8cdb15bed876e6ddc"
+          }
+        },
+        {
+          "client_id": "616512963878-bu9fga62pcao7npqgokigjpsm96brla9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZNktC30xrxQ8FYJgYM2vyJRC6VfS2dd0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616512963878-bu9fga62pcao7npqgokigjpsm96brla9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

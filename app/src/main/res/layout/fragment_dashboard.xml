@@ -48,13 +48,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <SearchView
+        <Spinner
+            android:id="@+id/spinner2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#71C7DF"
-            android:inputType="textShortMessage">
-
-        </SearchView>
+            android:layout_height="66dp"
+            android:contentDescription="@string/RndStf" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycledVievDash"
