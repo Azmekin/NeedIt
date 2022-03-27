@@ -23,4 +23,6 @@
     <string name="Enter_a_discr">Enter a discription</string>
     <string name="More">More</string>
     <string name="GiveType">Give</string>
+    <string name="RndStf">Random Stuff</string>
+    <string name="Retry1">Retry?</string>
 </resources>

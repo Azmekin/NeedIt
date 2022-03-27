@@ -24,4 +24,6 @@
     <string name="Enter_a_discr">Введите описание</string>
     <string name="More">Еще</string>
     <string name="GiveType">Отдаю</string>
+    <string name="RndStf">Рандомная штука</string>
+    <string name="Retry1">Еще?</string>
 </resources>

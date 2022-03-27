@@ -11,7 +11,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.needit.databinding.FragmentDashboardBinding
+import com.example.needit.firebase.firestore.PostFirestore
+import com.example.needit.firebase.models.Post
 import kotlinx.coroutines.withContext
+import java.util.*
+
 //Stegancev
 class DashboardFragment : Fragment() {
 
@@ -38,7 +42,7 @@ class DashboardFragment : Fragment() {
             textView.text = it
         })
 
-        init()
+        init1()
         init()
         init()
         init()
@@ -56,10 +60,50 @@ class DashboardFragment : Fragment() {
 
               RecycledVievDash.layoutManager= LinearLayoutManager(activity)
                 RecycledVievDash.adapter=adapter
-                val personRequest=PersonRequest(0,"Yasha","Lava","I need new boots 43 size","Need","Pushkin street Kolotushkin House")
+          try {
+              val postFire: PostFirestore = PostFirestore()
+              val post: Post =
+                  Post(
+                      "",
+                      "",
+                      "",
+                      "",
+                      "",
+                      post_type = Post.PostType.GIVE_AWAY,
+                      object_type = Post.ObjectType.LEISURE_GOODS,
+                      "",
+                      "",
+                      Date()
+                  )
+          } catch (e:NoSuchElementException){null}
+                val personRequest=PersonRequest(1,"Yasha","Lava","I need new boots 43 size","Need","Pushkin street Kolotushkin House")
                 adapter.addReq(personRequest)
 
         }
+    private fun init1()= with(binding) {
+
+        RecycledVievDash.layoutManager= LinearLayoutManager(activity)
+        RecycledVievDash.adapter=adapter
+        try {
+            val postFire: PostFirestore = PostFirestore()
+            val post: Post =
+                Post(
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    post_type = Post.PostType.GIVE_AWAY,
+                    object_type = Post.ObjectType.LEISURE_GOODS,
+                    "",
+                    "",
+                    Date()
+                )
+        } catch (e:NoSuchElementException){null}
+        val personRequest=PersonRequest(0,"Alex","Tumbaev","I need a wooden box","Need","Pushkin street Kolotushkin House")
+        adapter.addReq(personRequest)
+
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
