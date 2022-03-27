@@ -18,6 +18,7 @@ class DashAdapter:RecyclerView.Adapter<DashAdapter.DashHolder>() {
             ImageVievTest.setImageResource(R.drawable.ic_baseline_settings_applications_24)
             Contacts.text="+7999999999"
 
+
         }
     }
 
