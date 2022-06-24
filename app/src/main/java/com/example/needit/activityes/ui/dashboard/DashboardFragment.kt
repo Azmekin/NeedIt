@@ -8,35 +8,33 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.needit.R
 import com.example.needit.databinding.FragmentDashboardBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import java.util.*
 
 //Stegancev
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
-    private var _binding: FragmentDashboardBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
     private val adapter=DashAdapter()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
-
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        init()
-        return root
+        return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
-      private fun init()= with(binding) {
+
+      private fun init() {
           RecycledVievDash.layoutManager= LinearLayoutManager(activity)
           RecycledVievDash.adapter=adapter
           var progressDialog = ProgressDialog(context)  // Окно загрузки данных при ожидании
@@ -61,18 +59,13 @@ class DashboardFragment : Fragment() {
                                   document["address"].toString()
                               )
                           )
-                          progressDialog.dismiss()  // Убираем окно загрузки
-                          for (i in personaList) {  // Добавлем все элементы в DashBoard
-                              adapter.addReq(i)
-                          }
+                      }
+                      progressDialog.dismiss()  // Убираем окно загрузки
+                      for (i in personaList) {  // Добавлем все элементы в DashBoard
+                          adapter.addReq(i)
                       }
                   }
 
           } catch (e:NoSuchElementException){  null }
       }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
