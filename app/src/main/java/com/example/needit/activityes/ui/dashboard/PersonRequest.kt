@@ -1,7 +1,4 @@
 package com.example.needit.activityes.ui.dashboard
 
-var personList = mutableListOf<PersonRequest>()
-
-val PERSON_TD_EXTRA = "personExtra"
-
-data class PersonRequest(val imageID:Int, val name:String, val surname:String, val description:String, val typeReq:String, val address:String)
+data class PersonRequest(val ImageId:Int, val Name:String, val Surname:String, val Description:String, val typeReq:String, val address:String)
+//Stegancev

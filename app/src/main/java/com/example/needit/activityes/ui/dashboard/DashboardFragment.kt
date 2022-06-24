@@ -1,77 +1,86 @@
 package com.example.needit.activityes.ui.dashboard
 
 import android.app.ProgressDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.needit.R
+import com.example.needit.databinding.FragmentDashboardBinding
+import com.example.needit.firebase.firestore.PostFirestore
+import com.example.needit.firebase.models.Post
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_dashboard.*
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.*
-import kotlin.collections.ArrayList
 
 //Stegancev
 class DashboardFragment : Fragment() {
 
-    private lateinit var personaList : ArrayList<PersonRequest>
-    private lateinit var personAdapter: DashAdapter
-    private var check = false
+    private lateinit var dashboardViewModel: DashboardViewModel
+    private var _binding: FragmentDashboardBinding? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        init()
-    }
-
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+    private val adapter=DashAdapter()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
-    }
+        dashboardViewModel =
+            ViewModelProvider(this).get(DashboardViewModel::class.java)
 
-      private fun init() {
-          recycledVievDash.layoutManager = LinearLayoutManager(context)
+        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        init()
+        return root
+    }
+      private fun init()= with(binding) {
+          RecycledVievDash.layoutManager= LinearLayoutManager(activity)
+          RecycledVievDash.adapter=adapter
           var progressDialog = ProgressDialog(context)  // Окно загрузки данных при ожидании
           try {
               progressDialog.setCanceledOnTouchOutside(false)
               progressDialog.setMessage("Загружаем данные...")
               progressDialog.show() // Показываем окно загрузки
+              var personaList = mutableListOf<PersonRequest>()  // Инициализируем лист товаров
               val db = FirebaseFirestore.getInstance()   // Подключение к БД
               db.collection("Stuff")    // Просматриваем все элементы коллекции
                   .get()
                   .addOnSuccessListener {
                           result ->
-                      personaList = ArrayList()
                       for (document in result) {
                           personaList.add(
                               PersonRequest(    // Из БД инициализируем список объектов PersonalRequest
-                                  document["imageID"].toString().toInt(),
-                                  document["name"].toString(),
-                                  document["surname"].toString(),
-                                  document["description"].toString(),
+                                  document["ImageID"].toString().toInt(),
+                                  document["Name"].toString(),
+                                  document["Surname"].toString(),
+                                  document["Description"].toString(),
                                   document["typeReq"].toString(),
-                                  document["address"].toString()
+                                  document["Address"].toString()
                               )
                           )
+                          progressDialog.dismiss()  // Убираем окно загрузки
+                          for (i in personaList) {  // Добавлем все элементы в DashBoard
+                              adapter.addReq(i)
+                          }
                       }
-                      progressDialog.dismiss()  // Убираем окно загрузки
-                      personAdapter = context?.let { DashAdapter(it, personaList) }!!
-                      recycledVievDash.adapter = personAdapter
-                      check = true
                   }
 
           } catch (e:NoSuchElementException){  null }
       }
 
-    companion object {
-
-        @JvmStatic
-        fun newInstance() = DashboardFragment()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
