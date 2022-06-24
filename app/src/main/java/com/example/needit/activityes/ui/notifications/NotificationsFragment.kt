@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.needit.R
 import com.example.needit.activityes.ui.dashboard.PersonRequest
@@ -44,6 +45,11 @@ class NotificationsFragment : Fragment() {
                 .document(editTextTextPersonName
                     .text.toString())
                 .set(personalRequest)
+
+            Toast.makeText(getActivity(), R.string.CreateReqSend,
+                Toast.LENGTH_LONG).show();
+            editTextTextPersonName.setText("")
+            editTextTextMultiLine.setText("")
         }
 
     }
