@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <string-array name="spinner_moment">
+            <item>Без типа</item>
+            <item>Одежда</item>
+            <item>Обувь</item>
+            <item>Книги</item>
+            <item>Электроника</item>
+            <item>Мебель</item>
+
+        </string-array>
+
+</resources>
