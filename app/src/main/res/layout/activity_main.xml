@@ -40,7 +40,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toEndOf="@+id/surname"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,10 +60,11 @@
         android:id="@+id/surname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="57dp"
         android:layout_marginTop="13dp"
         android:text="Surname"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        tools:layout_editor_absoluteX="57dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <ImageView
         android:id="@+id/imageView2"
