@@ -53,12 +53,12 @@ class DashboardFragment : Fragment() {
                       for (document in result) {
                           personaList.add(
                               PersonRequest(    // Из БД инициализируем список объектов PersonalRequest
-                                  document["ImageID"].toString().toInt(),
-                                  document["Name"].toString(),
-                                  document["Surname"].toString(),
-                                  document["Description"].toString(),
+                                  document["imageID"].toString().toInt(),
+                                  document["name"].toString(),
+                                  document["surname"].toString(),
+                                  document["description"].toString(),
                                   document["typeReq"].toString(),
-                                  document["Address"].toString()
+                                  document["address"].toString()
                               )
                           )
                           progressDialog.dismiss()  // Убираем окно загрузки
