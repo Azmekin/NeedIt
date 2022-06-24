@@ -1,10 +1,10 @@
 package com.example.needit.activityes.ui.dashboard
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,7 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.needit.databinding.FragmentDashboardBinding
 import com.example.needit.firebase.firestore.PostFirestore
 import com.example.needit.firebase.models.Post
-import kotlinx.coroutines.withContext
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 //Stegancev
@@ -37,73 +41,44 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-
-        init1()
-        init()
-        init()
-        init()
-        init()
-        init()
-        init()
-        init()
-        init()
-        init()
-        init()
         init()
         return root
     }
       private fun init()= with(binding) {
-
-              RecycledVievDash.layoutManager= LinearLayoutManager(activity)
-                RecycledVievDash.adapter=adapter
+          RecycledVievDash.layoutManager= LinearLayoutManager(activity)
+          RecycledVievDash.adapter=adapter
+          var progressDialog = ProgressDialog(context)  // Окно загрузки данных при ожидании
           try {
-              val postFire: PostFirestore = PostFirestore()
-              val post: Post =
-                  Post(
-                      "",
-                      "",
-                      "",
-                      "",
-                      "",
-                      post_type = Post.PostType.GIVE_AWAY,
-                      object_type = Post.ObjectType.LEISURE_GOODS,
-                      "",
-                      "",
-                      Date()
-                  )
-          } catch (e:NoSuchElementException){null}
-                val personRequest=PersonRequest(1,"Yasha","Lava","I need new boots 43 size","Need","Pushkin street Kolotushkin House")
-                adapter.addReq(personRequest)
+              progressDialog.setCanceledOnTouchOutside(false)
+              progressDialog.setMessage("Загружаем данные...")
+              progressDialog.show() // Показываем окно загрузки
+              var personaList = mutableListOf<PersonRequest>()  // Инициализируем лист товаров
+              val db = FirebaseFirestore.getInstance()   // Подключение к БД
+              db.collection("Stuff")    // Просматриваем все элементы коллекции
+                  .get()
+                  .addOnSuccessListener {
+                          result ->
+                      for (document in result) {
+                          personaList.add(
+                              PersonRequest(    // Из БД инициализируем список объектов PersonalRequest
+                                  document["ImageID"].toString().toInt(),
+                                  document["Name"].toString(),
+                                  document["Surname"].toString(),
+                                  document["Description"].toString(),
+                                  document["typeReq"].toString(),
+                                  document["Address"].toString()
+                              )
+                          )
+                          progressDialog.dismiss()  // Убираем окно загрузки
+                          for (i in personaList) {  // Добавлем все элементы в DashBoard
+                              adapter.addReq(i)
+                          }
+                      }
+                  }
 
-        }
-    private fun init1()= with(binding) {
+          } catch (e:NoSuchElementException){  null }
+      }
 
-        RecycledVievDash.layoutManager= LinearLayoutManager(activity)
-        RecycledVievDash.adapter=adapter
-        try {
-            val postFire: PostFirestore = PostFirestore()
-            val post: Post =
-                Post(
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    post_type = Post.PostType.GIVE_AWAY,
-                    object_type = Post.ObjectType.LEISURE_GOODS,
-                    "",
-                    "",
-                    Date()
-                )
-        } catch (e:NoSuchElementException){null}
-        val personRequest=PersonRequest(0,"Alex","Tumbaev","I need a wooden box","Need","Pushkin street Kolotushkin House")
-        adapter.addReq(personRequest)
-
-    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
