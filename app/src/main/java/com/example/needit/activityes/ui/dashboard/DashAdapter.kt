@@ -13,8 +13,8 @@ class DashAdapter:RecyclerView.Adapter<DashAdapter.DashHolder>() {
     class DashHolder(item:View):RecyclerView.ViewHolder(item){
         val binding=RecyclerViewItemBinding.bind(item)
         fun bind(personRequest: PersonRequest) = with(binding){
-            textView1.text=personRequest.Name
-            textView2.text=personRequest.Description
+            textView1.text=personRequest.name
+            textView2.text=personRequest.description
             ImageVievTest.setImageResource(R.drawable.ic_baseline_settings_applications_24)
             Contacts.text="+7999999999"
 
