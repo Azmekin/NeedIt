@@ -1,12 +1,14 @@
 package com.example.needit.activityes.ui.dashboard
 
 import android.app.ProgressDialog
+import android.content.ClipData
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,8 @@ import com.example.needit.R
 import com.example.needit.databinding.FragmentDashboardBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.recycler_view_item.*
+import kotlinx.android.synthetic.main.recycler_view_item.view.*
 import java.util.*
 
 //Stegancev
@@ -21,7 +25,20 @@ class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
 
-    private val adapter=DashAdapter()
+    private val adapter=DashAdapter(object : onClickLis{
+        override fun onClikeded(id_num: Int) {
+            Toast.makeText(getActivity(),
+                id_num.toString(), Toast.LENGTH_LONG).show();
+
+      //      button.visibility= View.VISIBLE
+            if (RecycledVievDash.findViewHolderForAdapterPosition(id_num)?.itemView?.button?.visibility== View.VISIBLE)
+            RecycledVievDash.findViewHolderForAdapterPosition(id_num)?.itemView?.button?.visibility= View.GONE
+            else
+                RecycledVievDash.findViewHolderForAdapterPosition(id_num)?.itemView?.button?.visibility= View.VISIBLE
+        }
+
+    })
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

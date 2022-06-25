@@ -49,7 +49,7 @@ class NotificationsFragment : Fragment() {
             } else {
                 NeedOrGive = "Need"
             }
-
+            spinner.selectedItem.toString()  //добить в бд надо
             val personalRequest = PersonRequest(1,  // Создаём объект PersonalRequest
                 editTextTextPersonName.text.toString(),
                 "Null",
