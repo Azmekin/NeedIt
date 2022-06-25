@@ -3,6 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/NeedIt1/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
+        <entry key="..\:/NeedIt1/app/src/main/res/layout/activity_navigation.xml" value="0.264" />
+        <entry key="..\:/NeedIt1/app/src/main/res/layout/fragment_dashboard.xml" value="0.264" />
+        <entry key="..\:/NeedIt1/app/src/main/res/layout/fragment_notifications.xml" value="0.4" />
+        <entry key="..\:/NeedIt1/app/src/main/res/layout/recycler_view_item.xml" value="0.23854166666666668" />
+        <entry key="..\:/NeedIt1/app/src/main/res/layout/recycler_view_item_1.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/Dmitry/NeedIt/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dmitry/NeedIt/app/src/main/res/layout/activity_navigation.xml" value="0.3582427536231884" />
+        <entry key="..\:/Users/Dmitry/NeedIt/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dmitry/NeedIt/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dmitry/NeedIt/app/src/main/res/layout/fragment_notifications.xml" value="0.3582427536231884" />
+        <entry key="..\:/Users/Dmitry/NeedIt/app/src/main/res/layout/recycler_view_item.xml" value="0.3582427536231884" />
+        <entry key="..\:/Users/Dmitry/NeedIt/app/src/main/res/layout/recycler_view_item_1.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/stega/AndroidStudioProjects/NeedIt/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/stega/AndroidStudioProjects/NeedIt/app/src/main/res/drawable/ic_advert.xml" value="0.3828125" />
         <entry key="..\:/Users/stega/AndroidStudioProjects/NeedIt/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.3828125" />
