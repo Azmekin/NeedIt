@@ -1,6 +1,7 @@
 package com.example.needit.activityes.ui.dashboard
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ class DashboardFragment : Fragment() {
 
     private lateinit var personaList : ArrayList<PersonRequest>
     private lateinit var personAdapter: DashAdapter
+    private var check = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,8 +61,9 @@ class DashboardFragment : Fragment() {
                           )
                       }
                       progressDialog.dismiss()  // Убираем окно загрузки
-                      personAdapter = DashAdapter(personaList)
+                      personAdapter = context?.let { DashAdapter(it, personaList) }!!
                       recycledVievDash.adapter = personAdapter
+                      check = true
                   }
 
           } catch (e:NoSuchElementException){  null }

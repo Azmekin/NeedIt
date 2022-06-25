@@ -32,7 +32,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/stuff_count"
+        android:id="@+id/stuff_description"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/stuff_description"
+        android:id="@+id/stuff_address"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
