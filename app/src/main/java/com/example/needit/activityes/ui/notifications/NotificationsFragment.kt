@@ -26,7 +26,6 @@ class NotificationsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val db = Firebase.firestore
         button_submit.setOnClickListener {
-            button_submit.setText(R.string.Retry1)
             val NeedOrGive: String  // Проверка на свич (Give или Need)
             if (switch1.isChecked) {
                 NeedOrGive = "Give"
@@ -45,11 +44,9 @@ class NotificationsFragment : Fragment() {
                 .document(editTextTextPersonName
                     .text.toString())
                 .set(personalRequest)
-
-            Toast.makeText(getActivity(), R.string.CreateReqSend,
-                Toast.LENGTH_LONG).show();
-            editTextTextPersonName.setText("")
+            Toast.makeText(activity, "Заявка создана", Toast.LENGTH_SHORT).show()
             editTextTextMultiLine.setText("")
+            editTextTextPersonName.setText("")
         }
 
     }

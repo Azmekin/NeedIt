@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.needit.activityes.ui.dashboard.DashAdapter
-import com.example.needit.activityes.ui.dashboard.PersonRequest
 import com.example.needit.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

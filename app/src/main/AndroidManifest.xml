@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NeedIt">
-
-
+        <activity
+            android:name=".DetainDashActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

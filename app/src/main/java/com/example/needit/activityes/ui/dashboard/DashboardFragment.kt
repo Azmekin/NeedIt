@@ -6,20 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.needit.R
-import com.example.needit.databinding.FragmentDashboardBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 //Stegancev
 class DashboardFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-
-    private val adapter=DashAdapter()
+    private lateinit var personaList : ArrayList<PersonRequest>
+    private lateinit var personAdapter: DashAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,19 +34,18 @@ class DashboardFragment : Fragment() {
     }
 
       private fun init() {
-          RecycledVievDash.layoutManager= LinearLayoutManager(activity)
-          RecycledVievDash.adapter=adapter
+          recycledVievDash.layoutManager = LinearLayoutManager(context)
           var progressDialog = ProgressDialog(context)  // Окно загрузки данных при ожидании
           try {
               progressDialog.setCanceledOnTouchOutside(false)
               progressDialog.setMessage("Загружаем данные...")
               progressDialog.show() // Показываем окно загрузки
-              var personaList = mutableListOf<PersonRequest>()  // Инициализируем лист товаров
               val db = FirebaseFirestore.getInstance()   // Подключение к БД
               db.collection("Stuff")    // Просматриваем все элементы коллекции
                   .get()
                   .addOnSuccessListener {
                           result ->
+                      personaList = ArrayList()
                       for (document in result) {
                           personaList.add(
                               PersonRequest(    // Из БД инициализируем список объектов PersonalRequest
@@ -61,11 +59,16 @@ class DashboardFragment : Fragment() {
                           )
                       }
                       progressDialog.dismiss()  // Убираем окно загрузки
-                      for (i in personaList) {  // Добавлем все элементы в DashBoard
-                          adapter.addReq(i)
-                      }
+                      personAdapter = DashAdapter(personaList)
+                      recycledVievDash.adapter = personAdapter
                   }
 
           } catch (e:NoSuchElementException){  null }
       }
+
+    companion object {
+
+        @JvmStatic
+        fun newInstance() = DashboardFragment()
+    }
 }
