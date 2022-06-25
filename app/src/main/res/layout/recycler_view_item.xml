@@ -40,4 +40,20 @@
         android:layout_height="wrap_content"
         android:text="TextView" />
   </LinearLayout>
+
+  <Button
+      android:id="@+id/button"
+      android:layout_width="164dp"
+      android:layout_height="61dp"
+      android:layout_weight="1"
+      android:text="Забрать"
+      android:visibility="gone" />
+
+  <ImageView
+      android:id="@+id/helpIcon"
+      android:layout_width="94dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:visibility="gone"
+      app:srcCompat="@android:drawable/ic_menu_myplaces" />
 </LinearLayout>
