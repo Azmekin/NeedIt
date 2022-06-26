@@ -1,35 +1,39 @@
 package com.example.needit.activityes
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.fragment.app.Fragment
 import com.example.needit.R
+import com.example.needit.activityes.ui.dashboard.DashboardFragment
+import com.example.needit.activityes.ui.notifications.NotificationsFragment
 
 import com.example.needit.databinding.ActivityNavigationBinding
+import kotlinx.android.synthetic.main.activity_navigation.*
 
 class Navigation_Activity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityNavigationBinding
+    private val dashboardFragment = DashboardFragment()
+    private val notificationsFragment = NotificationsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_navigation)
+        replaceFragment(dashboardFragment)
 
-        binding = ActivityNavigationBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        nav_view.setOnNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.navigation_dashboard -> replaceFragment(dashboardFragment)
+                R.id.navigation_notifications -> replaceFragment(notificationsFragment)
+            }
+            true
+        }
+    }
 
-        val navView: BottomNavigationView = binding.navView
-
-        val navController = findNavController(R.id.nav_host_fragment_activity_navigation)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_notifications , R.id.navigation_dashboard //, R.id.navigation_home
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+    private fun replaceFragment(fragment: Fragment) {
+        if(fragment !=null) {
+            val transition = supportFragmentManager.beginTransaction()
+            transition.replace(R.id.nav_host_fragment_activity_navigation, fragment)
+            transition.commit()
+        }
     }
 }
