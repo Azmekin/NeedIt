@@ -4,75 +4,71 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.needit.R
-import com.example.needit.databinding.FragmentNotificationsBinding
-import com.example.needit.firebase.firestore.PostFirestore
-import com.example.needit.firebase.models.Post
-import java.util.*
+import com.example.needit.activityes.ui.dashboard.PersonRequest
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.fragment_notifications.*
 
 class NotificationsFragment : Fragment() {
-
-    private lateinit var notificationsViewModel: NotificationsViewModel
-    private var _binding: FragmentNotificationsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
-
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-var tr:Boolean=true
-     //   val textView: TextView = binding.textNotifications
-     //   notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-      //      textView.text = it
-      //  }
-        //  )
-        val but = binding.button1
-        val text1=binding.editTextTextMultiLine
-        val text2=binding.editTextTextPersonName
-        val switch1=binding.switch1
-        but.setOnClickListener {
-                if (tr) {
-                    but.setText(R.string.Retry1)
-                    text1.visibility = View.GONE
-                    text2.visibility = View.GONE
-                    switch1.visibility= View.GONE
-        tr=false
-
-   //                 try {
-   //                     var post:Post  = Post(text1.text.toString(),"","","Barnaul","+7999999999",Post.PostType.REQUIRE,Post.ObjectType.LEISURE_GOODS,"","", Date())
-   //                     if (switch1.isActivated){
-    //                        post.post_type=Post.PostType.GIVE_AWAY
-    //                    }
-   //             val send:PostFirestore = PostFirestore()
-   //             send.set(post)}catch (e:NoSuchElementException){null}
-            } else{
-                text1.visibility = View.VISIBLE
-                text2.visibility = View.VISIBLE
-                switch1.visibility= View.VISIBLE
-                but.setText(R.string.Submit)
-            tr=true}
-        }
-        return root
+        return inflater.inflate(R.layout.fragment_notifications, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val db = Firebase.firestore
+        val spinner: Spinner = spinner
+// Create an ArrayAdapter using the string array and a default spinner layout
+        context?.let {
+            ArrayAdapter.createFromResource(
+                it,
+                R.array.spinner_moment,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                // Apply the adapter to the spinner
+                spinner.adapter = adapter
+            }
+        }
+        button_submit.setOnClickListener {
+            button_submit.setText(R.string.Retry1)
+            val NeedOrGive: String  // Проверка на свич (Give или Need)
+            if (switch1.isChecked) {
+                NeedOrGive = "Give"
+            } else {
+                NeedOrGive = "Need"
+            }
+            spinner.selectedItem.toString()  //добить в бд надо
+            val personalRequest = PersonRequest(1,  // Создаём объект PersonalRequest
+                editTextTextPersonName.text.toString(),
+                "Null",
+                editTextTextMultiLine.text.toString(),
+                NeedOrGive,
+                "Lenina, 53"
+            )
+            db.collection("Stuff")      // Добавляем его в БД
+                .document(editTextTextPersonName
+                    .text.toString())
+                .set(personalRequest)
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+
+        }
+
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = NotificationsFragment()
     }
 }

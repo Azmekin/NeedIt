@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.needit.R
 import com.example.needit.activityes.ui.dashboard.DashAdapter
 import com.example.needit.activityes.ui.dashboard.PersonRequest
 import com.example.needit.databinding.FragmentHomeBinding
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class HomeFragment : Fragment() {
 
@@ -37,7 +41,9 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
         init()
+
         return root
     }
     private fun init()= with(binding) {

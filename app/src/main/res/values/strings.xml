@@ -25,4 +25,7 @@
     <string name="GiveType">Give</string>
     <string name="RndStf">Random Stuff</string>
     <string name="Retry1">Retry?</string>
+    <string name="title_place_holder" translatable="false">title_place_holder</string>
+    <string name="description_place_holder" translatable="false">description_place_holder</string>
+    <string name="address_place_holder">address_place_holder</string>
 </resources>
